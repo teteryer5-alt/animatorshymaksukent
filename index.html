@@ -3,119 +3,411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Валерия — каталог новогодних персонажей</title>
+    <title>Студия праздника «Валерия» — Аксукент</title>
     <style>
+        /* Базовые сбросы и стили */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         html {
             scroll-behavior: smooth;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background-color: #0b0705; 
-            color: #fff;
-            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0b0705;
+            color: #ffffff;
         }
-        body { margin: 0; padding: 0; }
-        h1, h2, h3 { font-family: "Georgia", serif; font-weight: 400; }
+        body {
+            background-color: #0b0705;
+            overflow-x: hidden;
+        }
 
+        /* Типографика */
+        h1, h2, h3 {
+            font-family: "Georgia", serif;
+            font-weight: 400;
+        }
+        .meta-tag {
+            color: #b58969;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Шапка сайта */
         header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 50px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(11, 7, 5, 0.8); backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(11, 7, 5, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .logo-title { font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 1.1rem; }
-        .logo-subtitle { font-size: 0.7rem; color: #b58969; text-transform: uppercase; letter-spacing: 1px; }
-        .header-center-text { font-size: 0.85rem; color: #a09085; }
-        
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-img {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid #b58969;
+        }
+        .logo-title {
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+        .logo-subtitle {
+            font-size: 0.65rem;
+            color: #b58969;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
+        }
+        .header-slogan {
+            display: none;
+            color: #a09085;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
         .btn-header {
-            border: 1px solid rgba(255,255,255,0.3); color: white; text-decoration: none;
-            padding: 10px 24px; border-radius: 30px; font-size: 0.85rem; transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
         }
-        .btn-header:hover { background: rgba(255,255,255,0.1); }
+        .btn-header:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+        }
 
-        section { min-height: 100vh; padding: 120px 50px 50px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; }
-        
-        #hero { background: radial-gradient(circle at 80% 50%, #3a2214 0%, #0b0705 60%); }
-        .meta-tag { color: #b58969; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; margin-bottom: 25px; }
-        #hero h1 { font-size: 4.5rem; max-width: 700px; line-height: 1.1; margin: 0 0 30px 0; }
-        .sub-text { color: #a09085; font-size: 1.1rem; max-width: 500px; line-height: 1.5; margin-bottom: 40px; }
-        
+        /* Главный экран (Hero) */
+        #hero {
+            min-height: 100vh;
+            padding: 120px 20px 60px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at 90% 40%, #3a2214 0%, #0b0705 60%);
+        }
+        #hero h1 {
+            font-size: 2.2rem;
+            max-width: 700px;
+            line-height: 1.25;
+            margin-bottom: 20px;
+        }
+        .sub-text {
+            color: #a09085;
+            font-size: 1rem;
+            max-width: 480px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
         .btn-main {
-            background-color: #e3bc9a; color: #1a0f0a; text-decoration: none;
-            padding: 15px 35px; border-radius: 30px; font-weight: 500; display: inline-block; transition: 0.3s;
+            background-color: #e3bc9a;
+            color: #1a0f0a;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
-        .btn-main:hover { background-color: #d4aa87; }
+        .btn-main:hover {
+            background-color: #d4aa87;
+            transform: translateY(-2px);
+        }
 
-        #catalog-head { min-height: 30vh; display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 50px; }
-        #catalog-head h2 { font-size: 3.5rem; margin: 0; }
-        .side-info { color: #a09085; font-size: 0.95rem; max-width: 300px; text-align: right; }
+        /* Заголовок каталога */
+        #catalog {
+            padding: 80px 20px 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .catalog-head {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .catalog-head h2 {
+            font-size: 2.2rem;
+        }
+        .side-info {
+            color: #a09085;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
 
-        .collection-section { display: flex; flex-direction: row; gap: 50px; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 50px; }
-        .col-left { flex: 1; } .col-right { flex: 1; display: flex; justify-content: center; }
+        /* Блоки программ */
+        .collection-section {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .col-left {
+            width: 100%;
+        }
+        .col-right {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .collection-section h3 {
+            font-size: 1.9rem;
+            margin: 10px 0 20px 0;
+        }
+        .bullets {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .bullets li {
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+        }
+        .bullets li::before {
+            content: "✦";
+            color: #b58969;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
         
+        /* Картинки и плашки */
         .img-wrapper {
-            border: 1px solid rgba(255,255,255,0.2); padding: 15px; border-radius: 4px;
-            background-color: rgba(255,255,255,0.02); box-shadow: 0 20px 40px rgba(0,0,0,0.5); width: 100%; max-width: 450px; position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            position: relative;
         }
-        .img-wrapper img { width: 100%; display: block; border-radius: 2px; }
-        .img-label { position: absolute; bottom: 30px; left: 30px; background: rgba(0,0,0,0.7); padding: 5px 15px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
+        .img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        .img-label {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            background: rgba(11, 7, 5, 0.85);
+            border: 1px solid rgba(181, 137, 105, 0.4);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+            border-radius: 4px;
+            color: #e3bc9a;
+        }
 
-        .collection-section h3 { font-size: 3.5rem; margin: 0 0 25px 0; }
-        .bullets { list-style: none; padding: 0; margin: 0 0 40px 0; }
-        .bullets li { margin-bottom: 12px; color: #cbd5e1; font-size: 1.05rem; }
-        .bullets li::before { content: "✦ "; color: #b58969; margin-right: 10px; }
-
+        /* Кнопка WhatsApp */
         .btn-whatsapp {
-            background-color: #25D366; color: white; text-decoration: none;
-            padding: 12px 28px; border-radius: 30px; font-weight: bold; display: inline-flex; transition: 0.3s;
+            background-color: #25D366;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
-        .btn-whatsapp:hover { background-color: #20ba5a; box-shadow: 0 0 15px rgba(37, 211, 102, 0.4); }
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+        }
 
-        footer { background: #070403; padding: 60px 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-        footer p { color: #a09085; margin-bottom: 20px; }
-        footer a { color: #e3bc9a; text-decoration: none; font-size: 1.3rem; margin: 0 20px; font-weight: bold; }
+        /* Футер */
+        footer {
+            background: #070403;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        footer p {
+            color: #a09085;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        footer .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        footer a {
+            color: #e3bc9a;
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        /* Адаптивность для ПК и планшетов */
+        @media (min-width: 768px) {
+            header {
+                padding: 20px 60px;
+            }
+            .header-slogan {
+                display: block;
+            }
+            .logo-title {
+                font-size: 1.1rem;
+            }
+            .btn-header {
+                padding: 10px 24px;
+                font-size: 0.85rem;
+            }
+
+            #hero {
+                text-align: left;
+                align-items: flex-start;
+                padding: 14px 60px;
+                background: radial-gradient(circle at 80% 50%, #3a2214 0%, #0b0705 55%);
+            }
+            #hero h1 {
+                font-size: 4rem;
+            }
+            .sub-text {
+                font-size: 1.15rem;
+            }
+
+            #catalog {
+                padding: 120px 60px 40px 60px;
+            }
+            .catalog-head {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+            .catalog-head h2 {
+                font-size: 3.2rem;
+            }
+            .side-info {
+                max-width: 320px;
+                text-align: right;
+            }
+
+            .collection-section {
+                flex-direction: row;
+                padding: 80px 60px;
+                gap: 60px;
+            }
+            /* Шахматный порядок: четные блоки разворачиваются */
+            .collection-section:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+            .col-left, .col-right {
+                flex: 1;
+            }
+            .collection-section h3 {
+                font-size: 2.8rem;
+            }
+            .img-wrapper {
+                max-width: 480px;
+            }
+            .btn-whatsapp {
+                width: max-content;
+            }
+            footer .links {
+                flex-direction: row;
+                justify-content: center;
+                gap: 40px;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Шапка сайта -->
     <header>
-        <div>
-            <div class="logo-title">Валерия</div>
-            <div class="logo-subtitle">Студия праздника</div>
+        <div class="logo-block">
+            <img src="logo.jpeg" alt="Логотип Валерия" class="logo-img">
+            <div>
+                <div class="logo-title">Валерия</div>
+                <div class="logo-subtitle">Студия праздника</div>
+            </div>
         </div>
-        <div class="header-center-text">Создаём атмосферу, которую запоминают.</div>
+        <div class="header-slogan">Создаём атмосферу, которую запоминают</div>
         <a href="#catalog" class="btn-header">Услуги и цены ➔</a>
     </header>
 
+    <!-- Главный экран -->
     <section id="hero">
-        <div class="meta-tag">Новогодний сезон 2027</div>
+        <span class="meta-tag">Аксукент</span>
         <h1>Праздник начинается с появления</h1>
-        <div class="sub-text">Подарите детям настоящую сказку! Организация волшебного Нового года в Аксукенте.</div>
+        <p class="sub-text">Подарите детям настоящую сказку! Организация волшебных новогодних программ и незабываемых событий.</p>
         <a href="#catalog" class="btn-main">Выбрать программу ➔</a>
     </section>
 
-    <section id="catalog">
-        <div id="catalog-head">
+    <!-- Переход к каталогу -->
+    <div id="catalog">
+        <div class="catalog-head">
             <div>
-                <div class="meta-tag">Коллекция Валерии</div>
+                <span class="meta-tag">Коллекция Валерии</span>
                 <h2>Выбери свою атмосферу</h2>
             </div>
-            <div class="side-info">Каждый образ — отдельная история. Найди ту, что подходит твоему празднику.</div>
+            <p class="side-info">Каждый образ — отдельная история. Найдите ту, которая идеально подходит вашему празднику.</p>
         </div>
-    </section>
+    </div>
 
     <!-- 1 ПРОГРАММА -->
     <section class="collection-section">
         <div class="col-left">
-            <div class="meta-tag">Elf Collection</div>
+            <span class="meta-tag">Elf Collection</span>
             <h3>Письмо Деду Морозу</h3>
             <ul class="bullets">
                 <li>Весёлая эльфийка придёт в гости к вашему ребёнку</li>
                 <li>Вместе они напишут настоящее письмо Дедушке Морозу</li>
                 <li>Программа длится 30 минут, идеально для детей от 3 лет</li>
             </ul>
-            <a href="https://wa.me" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
+            <a href="https://wa.me/77078743719?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83%20%D0%AB%D0%9F%D0%B8%D1%81%D1%8C%D0%BC%D0%BE%20%D0%94%D0%B5%D0%B4%D1%83%20%D0%9C%D0%BE%D1%80%D0%BE%D0%B7%D1%83%C2%BB" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
         </div>
         <div class="col-right">
             <div class="img-wrapper">
-                <img src="elf.jpeg" alt="Письмо Деду Морозу">
+                <img src="elf.png" alt="Письмо Деду Морозу">
                 <div class="img-label">12 000 ₸</div>
             </div>
         </div>
@@ -124,18 +416,18 @@
     <!-- 2 ПРОГРАММА -->
     <section class="collection-section">
         <div class="col-left">
-            <div class="meta-tag">Main Collection</div>
+            <span class="meta-tag">Main Collection</span>
             <h3>Дед Мороз и Снегурочка</h3>
             <ul class="bullets">
                 <li>Вместе весело поиграют в праздничные игры и станцуют танцы</li>
                 <li>Послушают новогодние стишки и подарят ваш заветный подарок</li>
                 <li>Длительность программы — 40 минут сказки</li>
             </ul>
-            <a href="https://wa.me" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
+            <a href="https://wa.me/77078743719?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83%20%D0%AB%D0%94%D0%B5%D0%B4%D0%B0%20%D0%9C%D0%BE%D1%80%D0%BE%D0%B7%D0%B0%20%D0%B8%D0%B7%20%D0%A1%D0%BD%D0%B5%D0%B3%D1%83%D1%80%D0%BE%D1%87%D0%BA%D0%B8%C2%BB" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
         </div>
         <div class="col-right">
             <div class="img-wrapper">
-                <img src="santa.jpeg" alt="Дед Мороз и Снегурочка">
+                <img src="santa.png" alt="Дед Мороз и Снегурочка">
                 <div class="img-label">от 25 000 ₸</div>
             </div>
         </div>
@@ -144,27 +436,29 @@
     <!-- 3 ПРОГРАММА -->
     <section class="collection-section">
         <div class="col-left">
-            <div class="meta-tag">Corporate Collection</div>
+            <span class="meta-tag">Corporate Collection</span>
             <h3>Новогодний Корпоратив</h3>
             <ul class="bullets">
-                <li>Интерактивные зажигательные конкурсы для взрослых коллективов</li>
-                <li>Восхитительные эмоции и заряд праздничного настроения на 30 минут</li>
+                <li>Яркая шоу-программа для взрослых и взрослых коллективов</li>
+                <li>Интерактивные конкурсы, современный юмор и харизматичные ведущие</li>
+                <li>Индивидуальный сценарий под вашу площадку и компанию</li>
             </ul>
-            <a href="https://wa.me" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
+            <a href="https://wa.me/77078743719?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83%20%D0%AB%D0%9D%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D0%B8%D0%B9%20%D0%9A%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%C2%BB" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
         </div>
         <div class="col-right">
             <div class="img-wrapper">
-                <img src="corporate.jpeg" alt="Новогодний Корпоратив">
+                <img src="corporate.png" alt="Новогодний Корпоратив">
                 <div class="img-label">от 40 000 ₸</div>
             </div>
         </div>
     </section>
 
+    <!-- Футер -->
     <footer>
-        <p>Забронировать новогоднюю сказку студии «Валерия»:</p>
-        <div>
-            <a href="tel:+787078743719">📞 87078743719</a>
-            <a href="https://instagram.com" target="_blank">📸 @animatorshym.aksukent</a>
+        <p>Студия праздника «Валерия» — Аксукент</p>
+        <div class="links">
+            <a href="tel:87078743719">📞 8 (707) 874-37-19</a>
+            <a href="https://instagram.com/animatorshym.aksukent" target="_blank">📷 @animatorshym.aksukent</a>
         </div>
     </footer>
 
