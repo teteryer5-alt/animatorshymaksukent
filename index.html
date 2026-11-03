@@ -1,8 +1,3 @@
-Всё стало понятно! По скриншоту видно главное: **расширения файлов изменились на `.jpeg**` (они переименовались из `.png` в `.jpeg` — `corporate.jpeg`, `elf.jpeg`, `santa.jpeg`), а в коде до этого стояло `.png`. Из-за этого телефонам не удавалось найти картинки, и они не отображались.
-
-Вот окончательный и полностью исправленный код, где расширения всех картинок точно соответствуют вашему репозиторию (`.jpeg`):
-
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,6 +20,22 @@
         body {
             background-color: #0b0705;
             overflow-x: hidden;
+        }
+
+        /* Анимация появления элементов */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         /* Типографика */
@@ -100,6 +111,10 @@
             transition: all 0.3s ease;
             white-space: nowrap;
         }
+        .btn-header:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+        }
 
         /* Главный экран (Hero) */
         #hero {
@@ -135,6 +150,10 @@
             display: inline-block;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+        }
+        .btn-main:hover {
+            background-color: #d4aa87;
+            transform: translateY(-2px);
         }
 
         /* Заголовок каталога */
@@ -203,7 +222,7 @@
             flex-shrink: 0;
         }
         
-        /* Авто-скейл картинок для мобильных */
+        /* Авто-скейл картинок и эффект при наведении */
         .img-wrapper {
             border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 8px;
@@ -214,6 +233,11 @@
             max-width: 100%;
             position: relative;
             box-sizing: border-box;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+        .img-wrapper:hover {
+            transform: translateY(-5px);
+            border-color: rgba(181, 137, 105, 0.6);
         }
         .img-wrapper img {
             width: 100% !important;
@@ -255,6 +279,10 @@
             font-size: 0.9rem;
             text-align: center;
         }
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+        }
 
         /* Футер */
         footer {
@@ -278,6 +306,10 @@
             color: #e3bc9a;
             text-decoration: none;
             font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #ffffff;
         }
 
         /* Адаптивность для ПК и планшетов (от 768px) */
@@ -360,7 +392,7 @@
 <body>
 
     <!-- Шапка сайта -->
-    <header>
+    <header class="animate-up">
         <div class="logo-block">
             <img src="logo.jpeg" alt="Логотип Валерия" class="logo-img">
             <div>
@@ -374,10 +406,10 @@
 
     <!-- Главный экран -->
     <section id="hero">
-        <span class="meta-tag">Аксукент</span>
-        <h1>Праздник начинается с появления</h1>
-        <p class="sub-text">Подарите детям настоящую сказку! Организация волшебных новогодних программ и незабываемых событий.</p>
-        <a href="#catalog" class="btn-main">Выбрать программу ➔</a>
+        <span class="meta-tag animate-up">Аксукент</span>
+        <h1 class="animate-up">Праздник начинается с появления</h1>
+        <p class="sub-text animate-up">Подарите детям настоящую сказку! Организация волшебных новогодних программ и незабываемых событий.</p>
+        <a href="#catalog" class="btn-main animate-up">Выбрать программу ➔</a>
     </section>
 
     <!-- Переход к каталогу -->
@@ -462,7 +494,3 @@
 
 </body>
 </html>
-
-```
-
-Замените код в `index.html` на этот, сохраните изменения в репозитории на GitHub, и теперь всё будет идеально отображаться и на компьютерах, и на телефонах!ммммммм
