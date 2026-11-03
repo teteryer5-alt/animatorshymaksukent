@@ -29,12 +29,13 @@
             font-weight: 400;
         }
         .meta-tag {
-            color: #b58969;
+            color: #e3bc9a;
             text-transform: uppercase;
             letter-spacing: 4px;
             font-size: 0.75rem;
             margin-bottom: 16px;
             display: block;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         /* Шапка сайта */
@@ -48,7 +49,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(11, 7, 5, 0.95);
+            background: rgba(11, 7, 5, 0.9);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -101,7 +102,7 @@
             border-color: #ffffff;
         }
 
-        /* Главный экран (Hero) */
+        /* Главный экран (Hero) с фоновой картинкой intro.jpeg */
         #hero {
             min-height: 100vh;
             padding: 110px 20px 50px 20px;
@@ -110,31 +111,50 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at 90% 40%, #3a2214 0%, #0b0705 60%);
+            position: relative;
+            background: url('intro.jpeg') no-repeat center center;
+            background-size: cover;
         }
+        /* Затемнение поверх картинки, чтобы текст и кнопки легко читались */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(11, 7, 5, 0.72);
+            z-index: 1;
+        }
+        /* Содержимое героя поднимаем поверх затемнения */
+        #hero > * {
+            position: relative;
+            z-index: 2;
+        }
+
         #hero h1 {
-            font-size: 2.1rem;
+            font-size: 2.2rem;
             max-width: 700px;
             line-height: 1.25;
             margin-bottom: 15px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
         .sub-text {
-            color: #a09085;
-            font-size: 0.95rem;
+            color: #e2d9d2;
+            font-size: 1rem;
             max-width: 480px;
             line-height: 1.5;
             margin-bottom: 30px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.9);
         }
         .btn-main {
             background-color: #e3bc9a;
             color: #1a0f0a;
             text-decoration: none;
-            padding: 14px 30px;
+            padding: 14px 32px;
             border-radius: 30px;
             font-weight: 600;
             display: inline-block;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(227, 188, 154, 0.3);
         }
         .btn-main:hover {
             background-color: #d4aa87;
@@ -206,7 +226,7 @@
             flex-shrink: 0;
         }
         
-        /* Картинки и авто-скейл */
+        /* Картинки программ и авто-скейл */
         .img-wrapper {
             border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 8px;
@@ -310,10 +330,14 @@
                 text-align: left;
                 align-items: flex-start;
                 padding: 140px 60px 80px 60px;
-                background: radial-gradient(circle at 80% 50%, #3a2214 0%, #0b0705 55%);
+                background-position: center center;
+            }
+            /* На ПК делаем плавный градиент слева направо для героя, чтобы картинка справа красиво проглядывала */
+            #hero::before {
+                background: linear-gradient(90deg, rgba(11, 7, 5, 0.92) 0%, rgba(11, 7, 5, 0.6) 60%, rgba(11, 7, 5, 0.2) 100%);
             }
             #hero h1 {
-                font-size: 3.8rem;
+                font-size: 4rem;
             }
             .sub-text {
                 font-size: 1.15rem;
@@ -378,7 +402,7 @@
         <a href="#catalog" class="btn-header">Услуги и цены ➔</a>
     </header>
 
-    <!-- Главный экран -->
+    <!-- Главный экран с фоном intro.jpeg -->
     <section id="hero">
         <span class="meta-tag">Аксукент</span>
         <h1>Праздник начинается с появления</h1>
