@@ -20,15 +20,22 @@
         body {
             background-color: #0b0705;
             overflow-x: hidden;
+            width: 100%;
         }
 
-        /* Классы для плавной анимации появления при прокрутке */
+        /* Плавная анимация (с fallback-ом, чтобы на телефонах точно всё было видно) */
         .reveal {
-            opacity: 0;
-            transform: translateY(40px);
+            opacity: 1; /* Сразу видно на случай сбоя скрипта */
+            transform: translateY(0);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-        .reveal.active {
+        
+        .reveal-init {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reveal-init.active {
             opacity: 1;
             transform: translateY(0);
         }
@@ -58,7 +65,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(11, 7, 5, 0.9);
+            background: rgba(11, 7, 5, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -114,7 +121,7 @@
         /* Главный экран (Hero) */
         #hero {
             min-height: 100vh;
-            padding: 100px 20px 50px 20px;
+            padding: 110px 20px 50px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -174,7 +181,6 @@
 
         /* Блоки программ */
         .collection-section {
-            min-height: auto;
             display: flex;
             flex-direction: column-reverse;
             justify-content: center;
@@ -217,7 +223,7 @@
             flex-shrink: 0;
         }
         
-        /* Картинки с эффектом подъема */
+        /* Картинки и авто-скейл */
         .img-wrapper {
             border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 8px;
@@ -228,18 +234,17 @@
             max-width: 100%;
             position: relative;
             box-sizing: border-box;
-            transition: transform 0.4s ease, border-color 0.4s ease;
+            transition: transform 0.4s ease;
         }
         .img-wrapper:hover {
-            transform: translateY(-6px);
-            border-color: rgba(181, 137, 105, 0.6);
+            transform: translateY(-5px);
         }
         .img-wrapper img {
             width: 100% !important;
             height: auto !important;
             display: block !important;
             border-radius: 6px;
-            object-fit: cover;
+            object-fit: contain;
         }
         .img-label {
             position: absolute;
@@ -430,101 +435,4 @@
             </ul>
             <a href="https://wa.me/77078743719?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83%20%C2%AB%D0%9F%D0%B8%D1%81%D1%8%D0%BC%D0%BE%20%D0%94%D0%B5%D0%B4%D1%83%20%D0%9C%D0%BE%D1%80%D0%BE%D0%B7%D1%83%C2%BB" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
         </div>
-        <div class="col-right">
-            <div class="img-wrapper">
-                <img src="elf.jpeg" alt="Письмо Деду Морозу">
-                <div class="img-label">12 000 ₸</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2 ПРОГРАММА -->
-    <section class="collection-section reveal">
-        <div class="col-left">
-            <span class="meta-tag">Main Collection</span>
-            <h3>Дед Мороз и Снегурочка</h3>
-            <ul class="bullets">
-                <li>Вместе весело поиграют в праздничные игры и станцуют танцы</li>
-                <li>Послушают новогодние стишки и подарят ваш заветный подарок</li>
-                <li>Длительность программы — 40 минут сказки</li>
-            </ul>
-            <a href="https://wa.me/77078743719?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83%20%C2%AB%D0%94%D0%B5%D0%B4%20%D0%9C%D0%BE%D1%80%D0%BE%D0%B7%20%D0%B8%20%D0%A1%D0%BD%D0%B5%D0%B3%D1%83%D1%80%D0%BE%D1%87%D0%BA%D0%B0%C2%BB" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
-        </div>
-        <div class="col-right">
-            <div class="img-wrapper">
-                <img src="santa.jpeg" alt="Дед Мороз и Снегурочка">
-                <div class="img-label">от 25 000 ₸</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3 ПРОГРАММА (Ну, Новый год, ПОГОДИ! 2027 из афиши) -->
-    <section class="collection-section reveal">
-        <div class="col-left">
-            <span class="meta-tag">Show Collection</span>
-            <h3>Ну, Новый год, ПОГОДИ! 2027</h3>
-            <ul class="bullets">
-                <li>Яркие персонажи и сказочная новогодняя атмосфера</li>
-                <li>Зажигательные танцы, веселые игры и интерактив</li>
-                <li>Снег и мыльные пузыри для детей[cite: 5]</li>
-                <li>Длительность программы — 1 час[cite: 5]</li>
-            </ul>
-            <a href="https://wa.me/77078743719?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%88%D0%BE%D1%83-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83%20%C2%AB%D0%9D%D1%83%2C%20%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%B3%D0%BE%D0%B4%2C%20%D0%9F%D0%9E%D0%93%D0%9E%D0%94%D0%98!%C2%BB" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
-        </div>
-        <div class="col-right">
-            <div class="img-wrapper">
-                <img src="waitnewyear.jpeg" alt="Ну Новый год ПОГОДИ 2027">
-                <div class="img-label">65 000 ₸</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4 ПРОГРАММА -->
-    <section class="collection-section reveal">
-        <div class="col-left">
-            <span class="meta-tag">Corporate Collection</span>
-            <h3>Новогодний Корпоратив</h3>
-            <ul class="bullets">
-                <li>Яркая шоу-программа для взрослых и коллективов</li>
-                <li>Интерактивные конкурсы, современный юмор и харизматичные ведущие</li>
-                <li>Индивидуальный сценарий под вашу площадку и компанию</li>
-            </ul>
-            <a href="https://wa.me/77078743719?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83%20%C2%AB%D0%9D%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D0%B8%D0%B9%20%D0%9A%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%C2%BB" target="_blank" class="btn-whatsapp">Заказать в WhatsApp ➔</a>
-        </div>
-        <div class="col-right">
-            <div class="img-wrapper">
-                <img src="corporate.jpeg" alt="Новогодний Корпоратив">
-                <div class="img-label">от 40 000 ₸</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Футер -->
-    <footer class="reveal">
-        <p>Студия праздника «Валерия» — Аксукент</p>
-        <div class="links">
-            <a href="tel:87078743719">📞 8 (707) 874-37-19</a>
-            <a href="https://instagram.com/animatorshym.aksukent" target="_blank">📷 @animatorshym.aksukent</a>
-        </div>
-    </footer>
-
-    <!-- Скрипт для плавной анимации появления элементов при прокрутке -->
-    <script>
-        function revealOnScroll() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        window.addEventListener('scroll', revealOnScroll);
-        // Запускаем сразу при загрузке для верхушки сайта
-        window.addEventListener('load', revealOnScroll);
-    </script>
-
-</body>
-</html>
+        <div class="col-right
