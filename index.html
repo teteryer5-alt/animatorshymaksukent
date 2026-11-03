@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Студия праздника «Валерия» — Аксукент</title>
     <style>
-        /* Базовые сбросы и стили */
+        /* Базовые сбросы */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -21,23 +21,6 @@
             background-color: #0b0705;
             overflow-x: hidden;
             width: 100%;
-        }
-
-        /* Плавная анимация (с fallback-ом, чтобы на телефонах точно всё было видно) */
-        .reveal {
-            opacity: 1; /* Сразу видно на случай сбоя скрипта */
-            transform: translateY(0);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .reveal-init {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .reveal-init.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Типографика */
@@ -234,10 +217,6 @@
             max-width: 100%;
             position: relative;
             box-sizing: border-box;
-            transition: transform 0.4s ease;
-        }
-        .img-wrapper:hover {
-            transform: translateY(-5px);
         }
         .img-wrapper img {
             width: 100% !important;
@@ -281,7 +260,6 @@
         }
         .btn-whatsapp:hover {
             background-color: #20ba5a;
-            transform: translateY(-2px);
         }
 
         /* Футер */
@@ -306,10 +284,6 @@
             color: #e3bc9a;
             text-decoration: none;
             font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-        footer a:hover {
-            color: #ffffff;
         }
 
         /* Адаптивность для ПК и планшетов (от 768px) */
@@ -406,14 +380,14 @@
 
     <!-- Главный экран -->
     <section id="hero">
-        <span class="meta-tag reveal">Аксукент</span>
-        <h1 class="reveal">Праздник начинается с появления</h1>
-        <p class="sub-text reveal">Подарите детям настоящую сказку! Организация волшебных новогодних программ и незабываемых событий.</p>
-        <a href="#catalog" class="btn-main reveal">Выбрать программу ➔</a>
+        <span class="meta-tag">Аксукент</span>
+        <h1>Праздник начинается с появления</h1>
+        <p class="sub-text">Подарите детям настоящую сказку! Организация волшебных новогодних программ и незабываемых событий.</p>
+        <a href="#catalog" class="btn-main">Выбрать программу ➔</a>
     </section>
 
     <!-- Переход к каталогу -->
-    <div id="catalog" class="reveal">
+    <div id="catalog">
         <div class="catalog-head">
             <div>
                 <span class="meta-tag">Коллекция Валерии</span>
@@ -424,7 +398,7 @@
     </div>
 
     <!-- 1 ПРОГРАММА -->
-    <section class="collection-section reveal">
+    <section class="collection-section">
         <div class="col-left">
             <span class="meta-tag">Elf Collection</span>
             <h3>Письмо Деду Морозу</h3>
@@ -444,7 +418,7 @@
     </section>
 
     <!-- 2 ПРОГРАММА -->
-    <section class="collection-section reveal">
+    <section class="collection-section">
         <div class="col-left">
             <span class="meta-tag">Main Collection</span>
             <h3>Дед Мороз и Снегурочка</h3>
@@ -464,7 +438,7 @@
     </section>
 
     <!-- 3 ПРОГРАММА -->
-    <section class="collection-section reveal">
+    <section class="collection-section">
         <div class="col-left">
             <span class="meta-tag">Show Collection</span>
             <h3>Ну, Новый год, ПОГОДИ! 2027</h3>
@@ -485,7 +459,7 @@
     </section>
 
     <!-- 4 ПРОГРАММА -->
-    <section class="collection-section reveal">
+    <section class="collection-section">
         <div class="col-left">
             <span class="meta-tag">Corporate Collection</span>
             <h3>Новогодний Корпоратив</h3>
@@ -505,36 +479,13 @@
     </section>
 
     <!-- Футер -->
-    <footer class="reveal">
+    <footer>
         <p>Студия праздника «Валерия» — Аксукент</p>
         <div class="links">
             <a href="tel:87078743719">📞 8 (707) 874-37-19</a>
             <a href="https://instagram.com/animatorshym.aksukent" target="_blank">📷 @animatorshym.aksukent</a>
         </div>
     </footer>
-
-    <!-- Скрипт безопасной анимации появления -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            // Сразу добавляем класс инициализации
-            reveals.forEach(el => el.classList.add('reveal-init'));
-
-            function checkReveal() {
-                for (let i = 0; i < reveals.length; i++) {
-                    let windowHeight = window.innerHeight;
-                    let elementTop = reveals[i].getBoundingClientRect().top;
-                    if (elementTop < windowHeight - 50) {
-                        reveals[i].classList.add('active');
-                    }
-                }
-            }
-
-            window.addEventListener('scroll', checkReveal);
-            checkReveal(); // Проверяем при загрузке
-        });
-    </script>
 
 </body>
 </html>
